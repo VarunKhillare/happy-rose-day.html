@@ -116,6 +116,26 @@ footer {
 @keyframes fall {
     to { transform: translateY(120vh) rotate(360deg); }
 }
+.kiss {
+    position: absolute;
+    font-size: 2.2rem;
+    animation: kissFloat 1.5s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes kissFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(1.4);
+    }
+}
+
+
+    
 </style>
 </head>
 
@@ -191,9 +211,41 @@ for(let i=0;i<35;i++){
     item.innerHTML = Math.random() > 0.5 ? "🌹" : "💖";
     document.body.appendChild(item);
 }
+// 😘 Kiss on touch / click
+document.addEventListener("click", showKiss);
+document.addEventListener("touchstart", showKiss);
+
+function showKiss(e) {
+    const kiss = document.createElement("div");
+    kiss.className = "kiss";
+    kiss.innerText = "😘";
+
+    let x, y;
+
+    if (e.touches && e.touches.length > 0) {
+        x = e.touches[0].clientX;
+        y = e.touches[0].clientY;
+    } else {
+        x = e.clientX;
+        y = e.clientY;
+    }
+
+    kiss.style.left = x + "px";
+    kiss.style.top = y + "px";
+
+    document.body.appendChild(kiss);
+
+    setTimeout(() => {
+        kiss.remove();
+    }, 1500);
+}
+
+
+    
 </script>
 
 </body>
 </html>
+
 
 
