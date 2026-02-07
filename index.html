@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day My Kaju ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+
+body {
+    min-height:100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    color:#fff;
+}
+
+.card {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(12px);
+    border-radius:25px;
+    padding:40px 30px;
+    width:90%;
+    max-width:430px;
+    text-align:center;
+    box-shadow:0 25px 45px rgba(0,0,0,0.3);
+    z-index:5;
+}
+
+h1 {
+    font-family:'Great Vibes', cursive;
+    font-size:3.2rem;
+}
+
+h2 {
+    font-weight:300;
+    margin-bottom:15px;
+}
+
+.rose {
+    font-size:4.5rem;
+    margin:15px 0;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    50% { transform: translateY(-12px); }
+}
+
+.lyrics p {
+    opacity:0;
+    margin:10px 0;
+    font-size:1rem;
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity:1; }
+}
+
+button {
+    margin-top:20px;
+    padding:10px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ff4d6d;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+footer {
+    margin-top:20px;
+    font-size:1rem;
+}
+
+/* Pop-up */
+.popup {
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:10;
+}
+
+.popup-box {
+    background:#fff;
+    color:#ff4d6d;
+    padding:25px 30px;
+    border-radius:20px;
+    text-align:center;
+    animation: pop 0.8s ease;
+}
+
+@keyframes pop {
+    from { transform:scale(0.7); opacity:0; }
+    to { transform:scale(1); opacity:1; }
+}
+
+/* Falling items */
+.fall {
+    position:absolute;
+    top:-50px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(120vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-box">
+        💕 This song reminds me of you,<br><b>My Kaju</b> 🌹
+        <br><br>
+        <button onclick="closePopup()">Okay ❤️</button>
+    </div>
+</div>
+
+<!-- AUDIO -->
+<audio id="music" loop>
+    <source src="Dekha_Hi_Nahi.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <h1>Happy Rose Day</h1>
+    <h2>My Sweet My Kaju 🌹</h2>
+
+    <div class="rose">🌹</div>
+
+    
+
+    <button onclick="playMusic()">▶ Play My Heart</button>
+
+    <footer>
+        Forever yours,<br><b>Varun ❤️</b>
+    </footer>
+</div>
+
+<script>
+const music = document.getElementById("music");
+
+function playMusic(){
+    music.play();
+}
+
+// Popup close
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+// Rose petals + hearts rain
+for(let i=0;i<35;i++){
+    const item = document.createElement("div");
+    item.className="fall";
+    item.style.left=Math.random()*100+"vw";
+    item.style.animationDuration=(3+Math.random()*5)+"s";
+    item.style.fontSize="1.5rem";
+    item.innerHTML = Math.random() > 0.5 ? "🌹" : "💖";
+    document.body.appendChild(item);
+}
+</script>
+
+</body>
+</html>
