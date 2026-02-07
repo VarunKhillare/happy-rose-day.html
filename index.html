@@ -122,13 +122,16 @@ footer {
 <body>
 
 <!-- POPUP -->
-<div class="popup" id="popup">
-    <div class="popup-box">
-        💕 This song reminds me of you,<br><b>My Kaju</b> 🌹
-        <br><br>
-        <button onclick="closePopup()">Okay ❤️</button>
-    </div>
+<div class="popup-box">
+    💕 Distance may separate our paths,<br>
+    but it can never separate our hearts.<br>
+    Until the day I hold you close,<br>
+    this song carries my love to you,<br>
+    <b>My Kajal 🌹</b>
+    <br><br>
+    <button onclick="closePopup()">I Feel You Here ❤️</button>
 </div>
+
 
 <!-- AUDIO -->
 <audio id="music" loop preload="auto">
@@ -138,13 +141,14 @@ footer {
 
 <div class="card">
     <h1>Happy Rose Day</h1>
-    <h2>My Sweet My Kaju 🌹</h2>
+    <h2>My Sweetest Kaju 🌹</h2>
 
     <div class="rose">🌹</div>
 
     
 
-    <button onclick="playMusic()">▶ Play My Heart</button>
+    <button id="musicBtn" onclick="toggleMusic()">▶ Play My Heart</button>
+
 
     <footer>
         Forever yours,<br><b>Varun ❤️</b>
@@ -153,14 +157,28 @@ footer {
 
 <script>
 const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
 
-function playMusic(){
-    music.play();
+function toggleMusic() {
+    if (music.paused) {
+        music.play().then(() => {
+            musicBtn.innerText = "⏸ Pause My Heart";
+        }).catch(() => {
+            alert("Tap anywhere once, then press Play ❤️");
+        });
+    } else {
+        music.pause();
+        musicBtn.innerText = "▶ Play My Heart";
+    }
 }
+
 
 // Popup close
 function closePopup(){
-    document.getElementById("popup").style.display="none";
+    document.getElementById("popup").style.display = "none";
+    music.play().then(() => {
+        musicBtn.innerText = "⏸ Pause My Heart";
+    });
 }
 
 // Rose petals + hearts rain
@@ -177,4 +195,5 @@ for(let i=0;i<35;i++){
 
 </body>
 </html>
+
 
